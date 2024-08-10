@@ -34,7 +34,9 @@ export default function Signin() {
           </button>
           <div className=" mt-2">
             Don&apos;t have have an account?
-            <NavLink className=" text-blue-700">Sign Up</NavLink>
+            <NavLink to="/signup" className=" text-blue-700">
+              Sign Up
+            </NavLink>
           </div>
         </div>
       </div>

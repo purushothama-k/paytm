@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
   const [filter, setFilter] = useState("");
@@ -13,8 +15,6 @@ export default function Dashboard() {
         setUsers(response.data.users);
       });
   }, [filter]);
-
-  console.log(users);
 
   return (
     <div className=" mx-auto mt-3 w-3/4 ">
@@ -42,7 +42,7 @@ export default function Dashboard() {
       {/* 2nd section */}
 
       <div className=" mt-4 bg-white p-6 rounded-lg">
-        <div className=" flex flex-col">
+        <div className="  flex flex-col">
           <div className=" font-semibold text-xl">Your balance : $5000</div>
 
           <div className=" my-3">
@@ -59,7 +59,14 @@ export default function Dashboard() {
             return (
               <div key={user.username} className=" flex justify-between mt-5">
                 <div className=" text-lg font-semibold">{user.firstName}</div>
-                <button className=" bg-slate-800 text-white px-4 py-2 rounded-md">
+                <button
+                  onClick={() => {
+                    navigate(
+                      "/send?id=" + user._id + "&name=" + user.firstName
+                    );
+                  }}
+                  className=" bg-slate-800 text-white px-4 py-2 rounded-md"
+                >
                   Send Money
                 </button>
               </div>

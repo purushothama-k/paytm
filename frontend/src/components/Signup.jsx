@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUsername] = useState("");
@@ -79,6 +80,7 @@ export default function Signup() {
               );
 
               localStorage.setItem("token", response.data.token);
+              navigate("/dashboard");
             }}
             className=" bg-slate-900 text-slate-50 w-full py-2 rounded-md font-semibold "
           >
@@ -86,7 +88,9 @@ export default function Signup() {
           </button>
           <div className=" mt-2">
             Already have an account?{" "}
-            <NavLink className=" text-blue-700">Login</NavLink>
+            <NavLink to="/signin" className=" text-blue-700">
+              Login
+            </NavLink>
           </div>
         </div>
       </div>
